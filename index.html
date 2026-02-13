@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retro iPod Playlist</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="ipod" aria-label="Retro iPod mockup">
+    <section class="screen" aria-live="polite">
+      <div class="top-row">
+        <span><span class="status-dot"></span>Now Playing</span>
+        <span id="track-num">1/1</span>
+      </div>
+
+      <div class="playlist-row">
+        <label for="playlist">Playlist</label>
+        <select id="playlist"></select>
+      </div>
+
+      <article class="track">
+        <h2 id="title">-</h2>
+        <p id="artist">-</p>
+        <div class="meter"><div id="progress"></div></div>
+      </article>
+
+      <div class="footer">
+        <span id="state">Paused</span>
+        <span id="time">0:00</span>
+      </div>
+    </section>
+
+    <section class="lyrics-screen" aria-live="polite" aria-label="Lyrics screen">
+      <div class="lyrics-top-row">
+        <span>Lyrics</span>
+        <span id="lyrics-mode">No Track</span>
+      </div>
+      <div id="lyrics-panel" class="lyrics-panel">Pick a song to view lyrics.</div>
+    </section>
+
+    <div class="wheel-wrap">
+      <div class="wheel" role="group" aria-label="iPod controls">
+        <button class="wheel-btn menu" id="btn-menu" aria-label="Change playlist">MENU</button>
+        <button class="wheel-btn prev" id="btn-prev" aria-label="Previous track">◀◀</button>
+        <button class="wheel-btn next" id="btn-next" aria-label="Next track">▶▶</button>
+        <button class="wheel-btn play" id="btn-play" aria-label="Play or pause">▶❚❚</button>
+        <button class="center-btn" id="btn-center" aria-label="Toggle play">SELECT</button>
+      </div>
+      <p class="hint">MENU cycles playlists • SELECT toggles play</p>
+    </div>
+
+    <section class="library" aria-label="Library builder">
+      <h3>Library Builder</h3>
+
+      <form id="add-playlist-form" class="builder-form">
+        <div class="field-row">
+          <label for="new-playlist-name">New Playlist</label>
+          <input id="new-playlist-name" name="new-playlist-name" type="text" maxlength="30" required />
+        </div>
+        <button type="submit">Add Playlist</button>
+      </form>
+
+      <form id="add-song-form" class="builder-form">
+        <div class="field-row">
+          <label for="song-playlist">Playlist</label>
+          <select id="song-playlist" name="song-playlist"></select>
+        </div>
+        <div class="field-row">
+          <label for="song-title">Song Title</label>
+          <input id="song-title" name="song-title" type="text" maxlength="40" required />
+        </div>
+        <div class="field-row">
+          <label for="song-artist">Artist</label>
+          <input id="song-artist" name="song-artist" type="text" maxlength="40" required />
+        </div>
+        <div class="field-row">
+          <label for="song-duration">Duration (sec)</label>
+          <input id="song-duration" name="song-duration" type="number" min="10" max="900" value="180" required />
+        </div>
+        <div class="field-row">
+          <label for="song-file">Audio File (optional)</label>
+          <input id="song-file" name="song-file" type="file" accept="audio/*" />
+        </div>
+        <div class="field-row">
+          <label for="song-url">Audio URL (optional)</label>
+          <input id="song-url" name="song-url" type="url" placeholder="https://example.com/song.mp3" />
+        </div>
+        <div class="field-row">
+          <label for="song-lyrics">Lyrics (optional)</label>
+          <textarea
+            id="song-lyrics"
+            name="song-lyrics"
+            rows="5"
+            placeholder="Plain text or synced format, e.g. [00:12] first line"
+          ></textarea>
+        </div>
+        <button type="submit">Add Song</button>
+      </form>
+
+      <p id="library-status" class="library-status" aria-live="polite"></p>
+    </section>
+
+    <div id="youtube-player-host" aria-hidden="true">
+      <div id="youtube-player"></div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
